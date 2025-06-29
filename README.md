@@ -9,7 +9,7 @@ An iOS application built with clean architecture and modern SwiftUI, demonstrati
 - **MVVM pattern** with SwiftUI and `@Observable` framework (iOS 17+)
 - **Repository pattern** for data abstraction layer
 - **Coordinator pattern** for navigation management
-- **Dependency injection** throughout the application stack
+- **Dependency injection** Increasing modularity, flexibility and testability
 
 ### Package Structure
 ```
