@@ -2,7 +2,7 @@
 
 An iOS application built with clean architecture and modern SwiftUI, demonstrating advanced development patterns by consuming the SpaceX API to display SpaceX launches data (with pagination, caching, sorting and filtering), and company information.
 
-## 🏗️ Architecture Overview
+## 🏛️ Architecture Overview
 
 ### Clean Architecture with Modular Design
 - **8 distinct Swift packages** implementing separation of concerns
@@ -104,7 +104,7 @@ public final class NetworkMonitor {
 }
 ```
 
-## 🧪 Testing Strategy
+## ✅ Testing Strategy
 
 ### Unit Testing
 - **ViewModel Testing**: Comprehensive async/await testing patterns
