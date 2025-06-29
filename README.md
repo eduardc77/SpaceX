@@ -5,7 +5,7 @@ An iOS application built with clean architecture and modern SwiftUI, demonstrati
 ## 🏛️ Architecture Overview
 
 ### Clean Architecture with Modular Design
-- **8 distinct Swift packages** implementing separation of concerns
+- **7 distinct Swift packages** implementing separation of concerns
 - **MVVM pattern** with SwiftUI and `@Observable` framework (iOS 17+)
 - **Repository pattern** for data abstraction layer
 - **Coordinator pattern** for navigation management
