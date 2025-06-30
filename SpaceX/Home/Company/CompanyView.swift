@@ -73,33 +73,31 @@ struct CompanyView: View {
         }
         .padding(.vertical, 20)
     }
-    
+
     private func errorView(_ error: AppError) -> some View {
-        VStack(spacing: 8) {
-            Image(systemName: error.iconName)
-                .foregroundColor(colorFromString(error.iconColor))
-                .font(.title2)
-            
-            Text("error.company.title")
-                .font(.subheadline)
-                .fontWeight(.medium)
-            
+        ContentUnavailableView {
+            Label {
+                Text(.errorCompanyTitle)
+            } icon: {
+                Image(systemName: error.iconName)
+                    .foregroundColor(colorFromString(error.iconColor))
+            }
+        } description: {
             Text(error.userMessage)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-            
-            Button("action.retry") {
-                Task {
-                    
+        } actions: {
+            Button {
+                Task { @MainActor in
                     await viewModel.loadCompany(forceRefresh: true)
                 }
+            } label: {
+                Text(.actionRetry)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, 4)
             }
             .buttonStyle(.bordered)
-            .controlSize(.small)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
     }
     
     private func colorFromString(_ colorString: String) -> Color {

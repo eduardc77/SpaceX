@@ -74,23 +74,14 @@ public final class LaunchRepository: LaunchRepositoryProtocol, @unchecked Sendab
                 try await saveLaunchesAndUpdateCache(result.launches, sortOption: sortOption)
                 return result
             } catch let networkError as NetworkError {
-                // Map NetworkError to AppError
+                // Map NetworkError to AppError and throw immediately on force refresh
                 let appError = mapNetworkErrorToAppError(networkError)
-                SpaceXLogger.network("🔄 Force refresh failed: \(appError)")
-
-                do {
-                    return try await loadFromCache(page: page, pageSize: pageSize, sortOption: sortOption, filter: filter)
-                } catch {
-                    throw appError
-                }
+                SpaceXLogger.network("🔄 Force refresh failed with network error: \(appError)")
+                throw appError
             } catch {
-                // Other errors
-                SpaceXLogger.network("🔄 Force refresh failed, using cache")
-                do {
-                    return try await loadFromCache(page: page, pageSize: pageSize, sortOption: sortOption, filter: filter)
-                } catch {
-                    throw error
-                }
+                // Other errors - also throw immediately on force refresh
+                SpaceXLogger.network("🔄 Force refresh failed with error: \(error)")
+                throw error
             }
         }
 

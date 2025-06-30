@@ -112,11 +112,11 @@ struct LaunchListView: View {
                     await viewModel.loadLaunches(forceRefresh: true)
                 }
             } label: {
-                Text("action.try_again")
+                Text(.actionRetry)
                     .fontWeight(.medium)
                     .padding(.horizontal, 4)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.bordered)
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)

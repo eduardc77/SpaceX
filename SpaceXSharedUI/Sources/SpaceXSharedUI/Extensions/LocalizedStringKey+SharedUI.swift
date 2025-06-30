@@ -26,7 +26,6 @@ public extension LocalizedStringKey {
     static var networkCachedData: LocalizedStringKey { "network.cached_data" }
     
     // MARK: - Alert Actions (Shared UI)
-    static var actionTryAgainShared: LocalizedStringKey { "action.try_again" }
     static var actionOk: LocalizedStringKey { "action.ok" }
     static var actionOpenSettings: LocalizedStringKey { "action.open_settings" }
 }

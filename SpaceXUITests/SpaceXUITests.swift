@@ -166,7 +166,7 @@ final class SpaceXUITests: XCTestCase {
     func testErrorStateRetry() throws {
         // With mock data, this test verifies the UI can handle retry scenarios
         // Look for any error retry buttons that might appear
-        let retryButtons = app.buttons.matching(identifier: "Try Again")
+        let retryButtons = app.buttons.matching(identifier: "Retry")
         if retryButtons.count > 0 {
             retryButtons.firstMatch.tap()
 

@@ -1,74 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "No Internet Connection" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine Internetverbindung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No Internet Connection"
-          }
-        }
-      }
-    },
-    "You're viewing cached data" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sie sehen zwischengespeicherte Daten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You're viewing cached data"
-          }
-        }
-      }
-    },
-    "error.generic.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fehler"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error"
-          }
-        }
-      }
-    },
-    "action.try_again" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erneut versuchen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Try Again"
-          }
-        }
-      }
-    },
     "action.ok" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -103,36 +35,36 @@
         }
       }
     },
-    "error.security.title" : {
+    "error.certificate.message" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sicherheitswarnung"
+            "value" : "Das Sicherheitszertifikat des Servers konnte nicht überprüft werden. Dies könnte ein Sicherheitsrisiko darstellen.\n\nBitte prüfen Sie:\n• Ihre Netzwerkverbindung\n• Datum- und Zeiteinstellungen\n• Ob Sie sich in einem sicheren Netzwerk befinden"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Security Warning"
+            "value" : "Unable to verify the server's security certificate. This could indicate a security risk.\n\nPlease check:\n• Your network connection\n• Date and time settings\n• If you're on a secure network"
           }
         }
       }
     },
-    "error.server.title" : {
+    "error.data_corrupted.message" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Serverfehler"
+            "value" : "Die App-Daten scheinen beschädigt zu sein.\n\nSie müssen möglicherweise den App-Cache löschen oder die App neu installieren, wenn das Problem weiterhin besteht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server Error"
+            "value" : "The app data appears to be corrupted.\n\nYou may need to clear the app cache or reinstall if the problem persists."
           }
         }
       }
@@ -154,6 +86,23 @@
         }
       }
     },
+    "error.generic.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehler"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
     "error.network.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -171,19 +120,19 @@
         }
       }
     },
-    "error.certificate.message" : {
+    "error.security.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Sicherheitszertifikat des Servers konnte nicht überprüft werden. Dies könnte ein Sicherheitsrisiko darstellen.\n\nBitte prüfen Sie:\n• Ihre Netzwerkverbindung\n• Datum- und Zeiteinstellungen\n• Ob Sie sich in einem sicheren Netzwerk befinden"
+            "value" : "Sicherheitswarnung"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unable to verify the server's security certificate. This could indicate a security risk.\n\nPlease check:\n• Your network connection\n• Date and time settings\n• If you're on a secure network"
+            "value" : "Security Warning"
           }
         }
       }
@@ -205,23 +154,57 @@
         }
       }
     },
-    "error.data_corrupted.message" : {
+    "error.server.title" : {
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die App-Daten scheinen beschädigt zu sein.\n\nSie müssen möglicherweise den App-Cache löschen oder die App neu installieren, wenn das Problem weiterhin besteht."
+            "value" : "Serverfehler"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The app data appears to be corrupted.\n\nYou may need to clear the app cache or reinstall if the problem persists."
+            "value" : "Server Error"
+          }
+        }
+      }
+    },
+    "No Internet Connection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Internetverbindung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Internet Connection"
+          }
+        }
+      }
+    },
+    "You're viewing cached data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sie sehen zwischengespeicherte Daten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You're viewing cached data"
           }
         }
       }
     }
   },
   "version" : "1.0"
-} 
+}

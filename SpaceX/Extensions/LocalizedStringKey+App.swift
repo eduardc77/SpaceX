@@ -19,7 +19,6 @@ public extension LocalizedStringKey {
     static var actionClear: LocalizedStringKey { "action.clear" }
     static var actionRefresh: LocalizedStringKey { "action.refresh" }
     static var actionRetry: LocalizedStringKey { "action.retry" }
-    static var actionTryAgain: LocalizedStringKey { "action.try_again" }
     
     // MARK: - Sections
     static var sectionCompanyTitle: LocalizedStringKey { "section.company.title" }

@@ -50,7 +50,7 @@ struct SpaceXApp: App {
                     } description: {
                         Text(error)
                     } actions: {
-                        Button(.actionTryAgain, action: createModelContainer)
+                        Button(.actionRetry, action: createModelContainer)
                             .buttonStyle(.borderedProminent)
                     }
                 } else {
