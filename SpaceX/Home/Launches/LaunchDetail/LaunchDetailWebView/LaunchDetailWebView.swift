@@ -11,36 +11,38 @@ struct LaunchDetailWebView: View {
     let url: URL
     let title: LocalizedStringKey
     
-    @State private var coordinator = LaunchWebViewCoordinator()
+    @State private var webViewStore = WebViewStore()
     
     var body: some View {
-        LaunchDetailWebViewRepresentable(url: url, coordinator: coordinator)
-            .navigationTitle(title)
-            .navigationBarTitleDisplayMode(.inline)
-            .ignoresSafeArea(edges: .bottom)
-            .toolbar {
-                ToolbarItemGroup(placement: .confirmationAction) {
-                    Button {
-                        coordinator.goBack()
-                    } label: {
-                        Image(systemName: "chevron.backward")
-                    }
-                    .disabled(!coordinator.canGoBack)
-                    
-                    Button {
-                        coordinator.goForward()
-                    } label: {
-                        Image(systemName: "chevron.forward")
-                    }
-                    .disabled(!coordinator.canGoForward)
-                    
-                    Button {
-                        coordinator.refresh()
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                    }
+        LaunchDetailWebViewRepresentable(
+            url: url,
+            store: webViewStore
+        )
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .confirmationAction) {
+                Button {
+                    webViewStore.goBack()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                }
+                .disabled(!webViewStore.canGoBack)
+                
+                Button {
+                    webViewStore.goForward()
+                } label: {
+                    Image(systemName: "chevron.forward")
+                }
+                .disabled(!webViewStore.canGoForward)
+                
+                Button {
+                    webViewStore.refresh()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
                 }
             }
+        }
     }
 }
 

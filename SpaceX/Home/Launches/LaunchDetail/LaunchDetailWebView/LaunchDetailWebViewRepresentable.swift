@@ -9,16 +9,25 @@ import SwiftUI
 
 struct LaunchDetailWebViewRepresentable: UIViewControllerRepresentable {
     let url: URL
-    let coordinator: LaunchWebViewCoordinator
+    let store: WebViewStore
     
     func makeUIViewController(context: Context) -> LaunchDetailWebViewController {
         let controller = LaunchDetailWebViewController(url: url)
-        controller.coordinator = coordinator
-        coordinator.webViewController = controller
+        controller.store = store
+        store.webViewController = controller
         return controller
     }
     
     func updateUIViewController(_ uiViewController: LaunchDetailWebViewController, context: Context) {
-        // No updates needed
+        // Update URL if needed
+        if uiViewController.url != url {
+            uiViewController.url = url
+            uiViewController.loadContent()
+        }
+    }
+    
+    static func dismantleUIViewController(_ uiViewController: LaunchDetailWebViewController, coordinator: ()) {
+        // Proper cleanup when the view is removed
+        uiViewController.cleanup()
     }
 }
