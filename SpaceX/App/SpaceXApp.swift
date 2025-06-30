@@ -84,9 +84,10 @@ struct SpaceXApp: App {
     private func configureKingfisher() {
         let cache = ImageCache.default
 
-        // Memory cache: 50MB, max 100 images
+        // Memory cache: 50MB, max 100 images, expires in 5 minutes
         cache.memoryStorage.config.totalCostLimit = 50 * 1024 * 1024
         cache.memoryStorage.config.countLimit = 100
+        cache.memoryStorage.config.expiration = .seconds(300) // 5 minutes
 
         // Disk cache: 100MB, expires in 7 days
         cache.diskStorage.config.sizeLimit = 100 * 1024 * 1024

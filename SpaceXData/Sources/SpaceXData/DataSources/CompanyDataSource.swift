@@ -33,12 +33,7 @@ final class CompanyDataSource: CompanyDataSourceProtocol {
     }
     
     func clearCompany() async throws {
-        let descriptor = FetchDescriptor<CompanyEntity>()
-        let entities = try modelContext.fetch(descriptor)
-        
-        for entity in entities {
-            modelContext.delete(entity)
-        }
+        try modelContext.delete(model: CompanyEntity.self)
         try modelContext.save()
     }
 }

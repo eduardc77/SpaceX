@@ -55,28 +55,12 @@ final class RocketDataSource: RocketDataSourceProtocol {
     }
     
     func deleteRocket(by id: String) async throws {
-        let predicate = #Predicate<RocketEntity> { entity in
-            entity.id == id
-        }
-        
-        let descriptor = FetchDescriptor<RocketEntity>(predicate: predicate)
-        let entities = try modelContext.fetch(descriptor)
-        
-        for entity in entities {
-            modelContext.delete(entity)
-        }
-        
+        try modelContext.delete(model: RocketEntity.self, where: #Predicate { $0.id == id })
         try modelContext.save()
     }
     
     func clearAllRockets() async throws {
-        let descriptor = FetchDescriptor<RocketEntity>()
-        let entities = try modelContext.fetch(descriptor)
-        
-        for entity in entities {
-            modelContext.delete(entity)
-        }
-        
+        try modelContext.delete(model: RocketEntity.self)
         try modelContext.save()
     }
 }

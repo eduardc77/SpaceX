@@ -91,27 +91,12 @@ final class LaunchDataSource: LaunchDataSourceProtocol {
     }
     
     func deleteLaunch(by id: String) async throws {
-        let predicate = #Predicate<LaunchEntity> { entity in
-            entity.id == id
-        }
-        
-        let descriptor = FetchDescriptor<LaunchEntity>(predicate: predicate)
-        let entities = try modelContext.fetch(descriptor)
-        
-        for entity in entities {
-            modelContext.delete(entity)
-        }
+        try modelContext.delete(model: LaunchEntity.self, where: #Predicate { $0.id == id })
         try modelContext.save()
     }
     
     func clearAllLaunches() async throws {
-        let descriptor = FetchDescriptor<LaunchEntity>()
-        let entities = try modelContext.fetch(descriptor)
-        
-        for entity in entities {
-            modelContext.delete(entity)
-        }
-        
+        try modelContext.delete(model: LaunchEntity.self)
         try modelContext.save()
     }
     
@@ -122,12 +107,8 @@ final class LaunchDataSource: LaunchDataSourceProtocol {
     
     func saveCachedYears(_ years: [Int]) async throws {
         // Clear existing years
-        let descriptor = FetchDescriptor<LaunchYearEntity>()
-        let existingYears = try modelContext.fetch(descriptor)
-        for year in existingYears {
-            modelContext.delete(year)
-        }
-        
+        try modelContext.delete(model: LaunchYearEntity.self)
+
         // Insert new years
         for year in years {
             let yearEntity = LaunchYearEntity(year: year)
