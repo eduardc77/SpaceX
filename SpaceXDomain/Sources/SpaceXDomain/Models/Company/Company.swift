@@ -47,7 +47,15 @@ public extension Company {
     var formattedDescription: String {
         let employeeCount = NumberFormatter.decimal(employees)
         let valuationText = NumberFormatter.abbreviated(valuation)
-        
-        return "\(name) was founded by \(founder) in \(founded). It has now \(employeeCount) employees, \(headquarters.state) launch sites, and is valued at USD \(valuationText)"
+
+        return String(
+            format: String(localized: "company.description.format", bundle: .module),
+            name,
+            founder,
+            founded,
+            employeeCount,
+            headquarters.state,
+            valuationText
+        )
     }
 }

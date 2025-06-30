@@ -170,6 +170,23 @@
           }
         }
       }
+    },
+    "company.description.format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ wurde %3$d von %2$@ gegründet. Das Unternehmen hat jetzt %4$@ Mitarbeiter, %5$@ Startplätze und wird auf USD %6$@ geschätzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ was founded by %2$@ in %3$d. It has now %4$@ employees, %5$@ launch sites, and is valued at USD %6$@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
