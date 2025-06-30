@@ -54,4 +54,12 @@ extension LaunchCoreEntity {
             landingSuccess: core.landingSuccess
         )
     }
+
+    func updateFromDomain(_ core: LaunchCore) {
+        self.core = core.core
+        self.flight = core.flight
+        self.reused = core.reused
+        self.landingAttempt = core.landingAttempt
+        self.landingSuccess = core.landingSuccess
+    }
 }

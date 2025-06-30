@@ -114,8 +114,22 @@ extension LaunchEntity {
         } else {
             self.links = LaunchLinksEntity.fromDomain(launch.links)
         }
-        
-        self.cores.removeAll()
-        self.cores = launch.cores.map { LaunchCoreEntity.fromDomain($0) }
+
+        // Update cores efficiently instead of recreating all
+        updateCoresFromDomain(launch.cores)
+    }
+
+    /// Efficiently update cores by reusing existing entities when possible
+    private func updateCoresFromDomain(_ domainCores: [LaunchCore]) {
+        // If same number of cores, update existing ones
+        if self.cores.count == domainCores.count {
+            for (index, domainCore) in domainCores.enumerated() where index < self.cores.count {
+                self.cores[index].updateFromDomain(domainCore)
+            }
+        } else {
+            // Different number of cores, need to recreate
+            self.cores.removeAll()
+            self.cores = domainCores.map { LaunchCoreEntity.fromDomain($0) }
+        }
     }
 }

@@ -84,6 +84,7 @@ public struct AsyncImageView: View {
             .retry(maxCount: 2, interval: .seconds(1.0))
             .scaleFactor(UIScreen.main.scale)
             .setProcessor(DownsamplingImageProcessor(size: size))
+            .cacheMemoryOnly(false)
             .resizable()
             .aspectRatio(contentMode: contentMode)
             .frame(width: size.width, height: size.height)

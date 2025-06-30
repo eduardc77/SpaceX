@@ -35,6 +35,8 @@ final class LaunchListViewModel {
     
     @ObservationIgnored private let maxCachedLaunches = 500 // Prevent unlimited memory growth
     
+    @ObservationIgnored private let maxCachedRocketNames = 50 // Limit rocket names cache
+
     // MARK: - Persistence Keys
     @ObservationIgnored private let sortOptionKey = "spacex_launch_cached_sort_option"
     @ObservationIgnored private let filterKey = "spacex_launch_cached_filter"
@@ -273,6 +275,10 @@ final class LaunchListViewModel {
         do {
             let names = try await rocketRepository.getRocketNames(for: Array(missingRocketIds))
             rocketNames.merge(names) { _, new in new }
+
+            // Clean up old rocket names to prevent unlimited growth
+            cleanupRocketNamesCache(currentRocketIds: rocketIds)
+
             SpaceXLogger.success("🚀 Loaded names for \(names.count) rockets")
         } catch {
             SpaceXLogger.error("❌ Failed to load rocket names: \(error)")
@@ -282,7 +288,29 @@ final class LaunchListViewModel {
             }
         }
     }
-    
+
+    private func cleanupRocketNamesCache(currentRocketIds: Set<String>) {
+        // Only clean up if we have too many cached names
+        guard rocketNames.count > maxCachedRocketNames else { return }
+
+        // Keep all rocket names for currently visible launches
+        let visibleRocketIds = currentRocketIds
+
+        // Remove rocket names not in current launches, keeping only the most recent
+        let excessCount = rocketNames.count - maxCachedRocketNames
+        if excessCount > 0 {
+            let rocketNamesToRemove = rocketNames.keys
+                .filter { !visibleRocketIds.contains($0) }
+                .prefix(excessCount)
+
+            for rocketId in rocketNamesToRemove {
+                rocketNames.removeValue(forKey: rocketId)
+            }
+
+            SpaceXLogger.cacheOperation("🧹 Cleaned up \(rocketNamesToRemove.count) old rocket names, kept \(rocketNames.count)")
+        }
+    }
+
     // MARK: - Persistence
     
     private func restoreSortOption() -> LaunchSortOption {

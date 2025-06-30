@@ -118,23 +118,34 @@ public final class RocketRepository: RocketRepositoryProtocol, @unchecked Sendab
         ids: [String], 
         using service: RocketServiceProtocol
     ) async throws -> [Rocket] {
-        return try await withThrowingTaskGroup(of: Rocket?.self) { group in
-            var rockets: [Rocket] = []
-            
-            for rocketId in ids {
-                group.addTask {
-                    return try? await service.fetchRocket(id: rocketId)
+        // Limit concurrent requests to prevent memory spikes
+        let maxConcurrentRequests = 5
+        let batches = ids.chunked(into: maxConcurrentRequests)
+        var rockets: [Rocket] = []
+        
+        for batch in batches {
+            let batchRockets = try await withThrowingTaskGroup(of: Rocket?.self) { group in
+                var batchResults: [Rocket] = []
+                
+                for rocketId in batch {
+                    group.addTask {
+                        return try? await service.fetchRocket(id: rocketId)
+                    }
                 }
+                
+                for try await rocket in group {
+                    if let rocket = rocket {
+                        batchResults.append(rocket)
+                    }
+                }
+                
+                return batchResults
             }
             
-            for try await rocket in group {
-                if let rocket = rocket {
-                    rockets.append(rocket)
-                }
-            }
-            
-            return rockets
+            rockets.append(contentsOf: batchRockets)
         }
+        
+        return rockets
     }
     
     // MARK: - Cache Management
@@ -147,4 +158,4 @@ public final class RocketRepository: RocketRepositoryProtocol, @unchecked Sendab
     private func updateCacheTimestamp() {
         lastCacheUpdate = Date()
     }
-} 
+}
