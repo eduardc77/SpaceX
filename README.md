@@ -88,7 +88,7 @@ KFImage(url)
 ### Certificate Pinning Implementation
 ```swift
 public final class CertificatePinner: Sendable {
-    // Production-grade certificate validation
+    // Certificate validation
     // Chain validation support
     // Environment-specific configurations
 }
